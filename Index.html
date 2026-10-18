@@ -1,339 +1,443 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mon Aventure à Bali | SSS</title>
-
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Mon Échange À Bali — Journal d'échange culturel</title>
+<meta name="description" content="Blog de Sarielis Sosa Saunders : mon expérience d'échange culturel à Bali, Indonésie."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700;9..144,900&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet"/>
 <style>
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    scroll-behavior: smooth;
+:root{
+  --forest:#174d40; --forest-2:#0f3a30; --leaf:#38735d;
+  --sand:#fbf4e7; --coral:#d77c62; --coral-2:#c96a4f;
+  --ink:#26352f; --cream:#fffdf8; --line:#e7e0cf;
+  --shadow:0 12px 35px rgba(24,59,45,.10);
+  --radius:22px;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Nunito Sans",Arial,sans-serif;
 }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--sand);color:var(--ink);font:17px/1.75 var(--serif)}
+img{max-width:100%}
+h1,h2,h3{font-family:var(--serif)}
+p{margin:.8rem 0}
 
-body {
-    font-family: Arial, sans-serif;
-    background: #faf8f0;
-    color: #293d32;
-    line-height: 1.8;
+/* ---------- Hero ---------- */
+.hero{
+  min-height:92vh;display:flex;align-items:center;justify-content:center;text-align:center;
+  color:#fff;padding:4rem 1.25rem 5rem;position:relative;overflow:hidden;
+  background:linear-gradient(160deg,rgba(15,58,48,.82),rgba(23,77,64,.55)),
+  url("https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1600&q=80") center/cover no-repeat, var(--forest);
 }
-
-header {
-    background: #244b38;
-    color: white;
-    text-align: center;
-    padding: 45px 20px;
+.hero::after{
+  content:"";position:absolute;inset:auto 0 0 0;height:120px;
+  background:linear-gradient(to bottom,transparent,var(--sand));
 }
-
-header h1 {
-    font-family: Georgia, serif;
-    font-size: 42px;
-    margin-bottom: 10px;
+.hero-inner{max-width:960px;position:relative;z-index:1}
+.eyebrow{font:800 .8rem/1.4 var(--sans);letter-spacing:.22em;text-transform:uppercase;color:#ffd9c4}
+.hero h1{font-size:clamp(3rem,9vw,6.6rem);line-height:1.02;margin:1rem 0 1.2rem;font-weight:900}
+.hero-subtitle{font-size:clamp(1.2rem,3vw,1.6rem);font-style:italic;color:#f3ead9;margin:0 0 2rem}
+.meta{display:flex;justify-content:center;flex-wrap:wrap;gap:.65rem;margin:0 0 2.2rem}
+.meta span{
+  background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.55);
+  backdrop-filter:blur(4px);border-radius:999px;padding:.45rem .95rem;
+  font:700 .85rem var(--sans);
 }
-
-header p {
-    font-size: 17px;
+.meta span b{color:#ffd9c4;font-weight:800}
+.button{
+  display:inline-block;background:var(--coral);color:#fff;text-decoration:none;
+  padding:.95rem 1.8rem;border-radius:999px;font:800 1rem var(--sans);
+  box-shadow:0 10px 25px rgba(0,0,0,.25);transition:transform .2s ease,background .2s ease;
 }
-
-nav {
-    background: #183b2a;
-    padding: 15px;
-    text-align: center;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+.button:hover{background:var(--coral-2);transform:translateY(-2px)}
+.scroll-hint{
+  position:absolute;left:50%;bottom:26px;transform:translateX(-50%);z-index:1;
+  color:#fff;opacity:.85;font:700 .75rem var(--sans);letter-spacing:.15em;text-transform:uppercase;
+  animation:bounce 2s infinite;
 }
+@keyframes bounce{0%,100%{transform:translate(-50%,0)}50%{transform:translate(-50%,8px)}}
 
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 12px;
-    font-size: 14px;
-    font-weight: bold;
+/* ---------- Navigation ---------- */
+nav{
+  position:sticky;top:0;z-index:50;background:rgba(255,253,248,.92);backdrop-filter:blur(10px);
+  display:flex;flex-wrap:wrap;justify-content:center;gap:.25rem;padding:.65rem;box-shadow:0 5px 20px rgba(23,61,45,.08);
 }
+nav a{font:700 .82rem var(--sans);color:var(--forest);text-decoration:none;padding:.5rem .7rem;border-radius:999px;transition:background .15s ease,color .15s ease}
+nav a:hover{background:#e7ebdf}
+nav a.active{background:var(--forest);color:#fff}
+.nav-toggle{display:none}
 
-nav a:hover {
-    color: #e5c98b;
+/* ---------- Sections ---------- */
+main{max-width:1080px;margin:auto;padding:1.5rem 1.2rem 4rem}
+.section{scroll-margin-top:90px;margin:2.2rem 0;background:var(--cream);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.content{padding:clamp(1.4rem,4vw,2.8rem)}
+.label{font:800 .75rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--coral)}
+h2{color:var(--forest);font-size:clamp(1.9rem,5vw,3rem);line-height:1.15;margin:.4rem 0 1.2rem;font-weight:700}
+h3{color:var(--forest);margin:.2rem 0 .5rem;font-size:1.25rem}
+.lead{font-size:1.1rem;color:#3d4c44}
+.photo{display:block;width:100%;height:clamp(200px,32vw,360px);object-fit:cover}
+
+/* Reveal on scroll */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.scroll-hint{animation:none}}
+
+/* ---------- Fact chips ---------- */
+.facts{display:flex;flex-wrap:wrap;gap:.6rem;margin:1.2rem 0 0}
+.facts span{background:#eef3ea;border:1px solid #dfe7d8;border-radius:12px;padding:.5rem .9rem;font:600 .88rem var(--sans);color:var(--forest)}
+.facts span b{color:var(--coral-2)}
+
+/* ---------- Timeline ---------- */
+.timeline{position:relative;margin:1.6rem 0 .4rem;padding-left:2rem}
+.timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:3px;background:linear-gradient(var(--leaf),var(--coral));border-radius:3px}
+.tl-item{position:relative;padding:0 0 1.5rem 1.2rem}
+.tl-item::before{
+  content:"";position:absolute;left:-2rem;top:.45rem;width:15px;height:15px;border-radius:50%;
+  background:var(--cream);border:4px solid var(--coral);
 }
+.tl-item:last-child{padding-bottom:.2rem}
+.tl-tag{display:inline-block;background:var(--forest);color:#fff;border-radius:999px;padding:.15rem .7rem;font:800 .72rem var(--sans);letter-spacing:.08em;text-transform:uppercase;margin-bottom:.3rem}
 
-.hero {
-    min-height: 380px;
-    background:
-    linear-gradient(rgba(15,35,24,.45),rgba(15,35,24,.55)),
-    url("https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1600&q=85");
-    background-size: cover;
-    background-position: center;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    padding: 35px;
+/* ---------- Neighbourhood map ---------- */
+.map-list{list-style:none;margin:1.2rem 0 0;padding:0;display:grid;gap:.6rem}
+.map-list li{
+  display:flex;align-items:center;gap:.8rem;background:#f4f1e6;border-radius:14px;padding:.7rem .95rem;
+  font:600 .95rem var(--sans);color:#3d4c44;
 }
+.map-list .ico{font-size:1.3rem}
+.map-list li b{color:var(--forest)}
 
-.hero h2 {
-    font-family: Georgia, serif;
-    font-size: 38px;
-    margin-bottom: 12px;
+/* ---------- Gallery ---------- */
+.photo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.1rem;margin:1.4rem 0 .2rem}
+.photo-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 8px 22px rgba(24,59,45,.10);transition:transform .2s ease}
+.photo-card:hover{transform:translateY(-5px)}
+.photo-card img{width:100%;height:200px;object-fit:cover;display:block}
+.photo-card div{padding:.9rem 1rem 1.1rem}
+.photo-card h3{font-size:1.05rem;margin:0 0 .2rem}
+.photo-card p{font-size:.92rem;color:#5b6a62;margin:0}
+
+/* ---------- Lessons ---------- */
+.lessons{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1rem;margin-top:1.4rem}
+.lesson{background:#eef3ea;border-radius:16px;padding:1.3rem 1.2rem;border-top:5px solid var(--coral)}
+.lesson .num{font:900 2rem var(--serif);color:var(--coral);line-height:1}
+.lesson h3{margin:.4rem 0 .3rem}
+.lesson p{font-size:.95rem;color:#4a5a51;margin:0}
+
+/* ---------- Vocabulary ---------- */
+.word{display:inline-block;background:#eef3ea;border:1px solid #dfe7d8;border-radius:999px;padding:.4rem .85rem;margin:.28rem;font:700 .86rem var(--sans);color:var(--forest)}
+
+/* ---------- FAQ ---------- */
+details{background:#f5efdf;border-radius:14px;padding:1rem 1.2rem;margin:.8rem 0;border:1px solid #ece2c8}
+summary{font-weight:700;color:var(--forest);cursor:pointer;font-family:var(--sans)}
+details p{margin-bottom:0}
+
+/* ---------- Contact ---------- */
+.contact-form{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;align-items:start;margin-top:1.2rem}
+.form-field{min-width:0}
+.contact-form label{display:block;font:700 .88rem var(--sans);color:var(--forest);margin-bottom:6px}
+.contact-form input,.contact-form textarea{
+  width:100%;padding:.85rem 1rem;border:1px solid #d9d9d9;border-radius:10px;
+  font:1rem var(--serif);background:#fff;transition:border-color .15s ease,box-shadow .15s ease;
 }
-
-.hero p {
-    font-size: 18px;
+.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--leaf);box-shadow:0 0 0 3px rgba(56,115,93,.15)}
+.full{grid-column:1/-1}
+.contact-form button{
+  justify-self:start;background:var(--coral);color:#fff;border:0;border-radius:999px;
+  padding:.95rem 1.8rem;font:800 1rem var(--sans);cursor:pointer;transition:background .2s ease,transform .2s ease;
 }
+.contact-form button:hover{background:var(--coral-2);transform:translateY(-2px)}
+.form-note{font:600 .85rem var(--sans);color:#2e7d4f;margin:.6rem 0 0;display:none}
+.email-line{text-align:center;margin-top:1.6rem;font-family:var(--sans)}
+.social-links{color:var(--coral);text-decoration:none;font-weight:800}
+.social-links:hover{text-decoration:underline}
+.small-note{font:.82rem/1.6 var(--sans);color:#7a877f;margin-top:1rem}
 
-.container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 35px 22px;
+/* ---------- Back to top / footer ---------- */
+#toTop{
+  position:fixed;right:18px;bottom:18px;z-index:60;width:46px;height:46px;border-radius:50%;
+  background:var(--forest);color:#fff;border:0;font-size:1.2rem;cursor:pointer;
+  opacity:0;pointer-events:none;transition:opacity .25s ease,transform .25s ease;transform:translateY(8px);
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
 }
+#toTop.show{opacity:1;pointer-events:auto;transform:none}
+footer{text-align:center;background:var(--forest-2);color:#e9e2d2;padding:3rem 1rem}
+footer h2{color:#fff;margin-top:0}
+footer p{color:#c9c0aa;font-family:var(--sans);font-size:.9rem}
 
-section {
-    margin-bottom: 45px;
-    scroll-margin-top: 75px;
-}
-
-h2.section-title {
-    font-family: Georgia, serif;
-    color: #244b38;
-    font-size: 30px;
-    margin-bottom: 20px;
-    border-bottom: 2px solid #d7bd82;
-    padding-bottom: 8px;
-}
-
-.intro-card {
-    background: white;
-    padding: 28px;
-    border-radius: 12px;
-    box-shadow: 0 3px 12px #0000000d;
-}
-
-.place {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 25px;
-    align-items: center;
-    margin: 30px 0;
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-}
-
-.place img {
-    width: 100%;
-    height: 290px;
-    object-fit: cover;
-    border-radius: 9px;
-}
-
-.place h3 {
-    font-family: Georgia, serif;
-    font-size: 24px;
-    color: #244b38;
-    margin-bottom: 12px;
-}
-
-.place:nth-of-type(even) img {
-    order: 2;
-}
-
-.culture {
-    background: #e9eee4;
-    padding: 28px;
-    border-radius: 12px;
-}
-
-.contact {
-    background: #244b38;
-    color: white;
-    padding: 30px;
-    border-radius: 12px;
-}
-
-.contact h2 {
-    color: white !important;
-    border-color: #d7bd82 !important;
-}
-
-.contact a {
-    color: #f0d89e;
-}
-
-footer {
-    background: #183b2a;
-    color: white;
-    text-align: center;
-    padding: 28px 15px;
-    font-size: 14px;
-}
-
-footer p {
-    margin: 6px;
-}
-
-@media (max-width: 650px) {
-    header h1 {
-        font-size: 32px;
-    }
-
-    nav a {
-        display: inline-block;
-        margin: 5px 7px;
-    }
-
-    .hero h2 {
-        font-size: 30px;
-    }
-
-    .place {
-        grid-template-columns: 1fr;
-    }
-
-    .place:nth-of-type(even) img {
-        order: 0;
-    }
-
-    .place img {
-        height: 240px;
-    }
+/* ---------- Responsive ---------- */
+@media(max-width:640px){
+  body{font-size:16px}
+  .hero{min-height:80vh}
+  .contact-form{grid-template-columns:1fr}
+  .full{grid-column:1}
+  nav a{font-size:.74rem;padding:.4rem .5rem}
 }
 </style>
+<base target="_blank">
 </head>
-
 <body>
 
-<header>
-    <h1>Mon Aventure à Bali</h1>
-    <p>Mon échange culturel en Indonésie</p>
-    <p>Sarielis Sosa Saunders | FSF2DE-02</p>
-    <p>Toronto, Canada → Bali, Indonésie</p>
+<header class="hero" id="accueil">
+  <div class="hero-inner">
+    <div class="eyebrow">Mon journal d'échange culturel</div>
+    <h1>Mon Échange à Bali</h1>
+    <p class="hero-subtitle">Bali, Indonésie — l'île des dieux</p>
+    <div class="meta">
+      <span><b>Nom :</b> Sarielis Sosa Saunders</span>
+      <span><b>Classe :</b> FSF2DE-02</span>
+      <span><b>Origine :</b> Toronto, Canada</span>
+    </div>
+    <a href="#bienvenue" class="button">En savoir plus sur mon expérience</a>
+  </div>
+  <div class="scroll-hint">▼ Défiler</div>
 </header>
 
-<nav>
-    <a href="#maison">Maison</a>
-    <a href="#introduction">Introduction</a>
-    <a href="#experience">Mon Expérience</a>
-    <a href="#culture">Ce Que J’ai Appris</a>
-    <a href="#contact">Contact</a>
+<nav aria-label="Navigation principale">
+  <a href="#accueil">Maison</a>
+  <a href="#bienvenue">Introduction</a>
+  <a href="#culture-intro">Culture</a>
+  <a href="#experience">Mon expérience</a>
+  <a href="#lieux">Lieux</a>
+  <a href="#bilan">Ce que j'ai appris</a>
+  <a href="#contact">Contact</a>
 </nav>
 
-<div class="hero">
+<main>
+
+<!-- 1 · Introduction -->
+<section class="section reveal" id="bienvenue">
+  <img alt="Paysage tropical de Bali" class="photo" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=1400&q=80" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#d7e8d8,#f7e8d6)';"/>
+  <div class="content">
+    <div class="label">Partie 1 · Introduction</div>
+    <h2>Bienvenue sur mon blog !</h2>
+    <p class="lead">Bonjour tout le monde ! Je m'appelle <strong>Sarielis</strong> et je viens de Toronto, au Canada. Dans ce blog, je partage mon expérience pendant mon programme d'échange à Bali, en Indonésie.</p>
+    <p>Je vous parle de mes activités, des endroits que je visite, des personnes que je rencontre et des choses que j'apprends. Découvrir un nouveau pays et vivre de nouvelles expériences me rend très heureuse. Bonne lecture !</p>
+  </div>
+</section>
+
+<!-- 2 · Culture -->
+<section class="section reveal" id="culture-intro">
+  <img alt="Temple balinais entouré de végétation" class="photo" src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=1400&q=80" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#d7e8d8,#f7e8d6)';"/>
+  <div class="content">
+    <div class="label">Partie 2 · Culture</div>
+    <h2>Bali et sa culture</h2>
+    <p>Bali est une île d'Indonésie connue pour ses belles plages, ses temples et sa culture unique. La religion hindoue joue un rôle important dans la vie quotidienne : les habitants célèbrent des traditions, font des offrandes et pratiquent des danses traditionnelles. Bali est aussi réputée pour sa musique, son art et sa nourriture traditionnelle.</p>
+    <p>Je trouve cette culture fascinante parce qu'elle est très différente de celle du Canada. Chaque journée m'apprend quelque chose de nouveau.</p>
+    <div class="facts">
+      <span><b>Pays :</b> Indonésie</span>
+      <span><b>Capitale :</b> Denpasar</span>
+      <span><b>Religion :</b> Hindouisme balinais</span>
+      <span><b>Langue :</b> Balinais et indonésien</span>
+      <span><b>Monnaie :</b> Roupie (IDR)</span>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · Expérience -->
+<section class="section reveal" id="experience">
+  <img alt="Architecture traditionnelle balinaise" class="photo" src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=1400&q=80" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#d7e8d8,#f7e8d6)';"/>
+  <div class="content">
+    <div class="label">Partie 3 · Mon expérience jusqu'à présent</div>
+    <h2>Mon expérience jusqu'à présent</h2>
+    <p>Je suis arrivée à Bali il y a quelques semaines. Au début, j'étais nerveuse parce que je ne connaissais personne. Maintenant, je me sens beaucoup plus à l'aise et j'apprécie chaque jour de mon expérience. Parler français presque tous les jours m'aide énormément à progresser, et j'ai beaucoup appris sur les traditions et les coutumes balinaises qu'on ne peut vraiment découvrir qu'en vivant ici.</p>
+    <div class="timeline">
+      <div class="tl-item">
+        <span class="tl-tag">Semaine 1</span>
+        <h3>L'arrivée</h3>
+        <p>L'avion, la chaleur, les premières impressions… tout était nouveau et un peu intimidant, mais excitant.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag">Semaine 2</span>
+        <h3>La première semaine d'école</h3>
+        <p>Apprendre le fonctionnement de ma nouvelle école et suivre mes cours en français dans un environnement complètement différent.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag">Semaines 3–4</span>
+        <h3>Nouveaux amis</h3>
+        <p>J'ai rencontré des élèves adorables qui m'ont aidée à m'intégrer et m'ont montré les coutumes locales.</p>
+      </div>
+      <div class="tl-item">
+        <span class="tl-tag">Aujourd'hui</span>
+        <h3>Je me sens chez moi</h3>
+        <p>Je me débrouille en balinais, je connais les meilleurs warungs (petits restaurants) et je vis chaque jour comme une aventure.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · Environnement -->
+<section class="section reveal" id="environnement">
+  <img alt="Temple balinais et paysage tropical" class="photo" src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=1400&q=80" onerror="this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#d7e8d8,#f7e8d6)';"/>
+  <div class="content">
+    <div class="label">Partie 4 · Mon environnement</div>
+    <h2>Mon environnement</h2>
+    <p>Je vis dans un quartier agréable de Bali. Voici ce qui se trouve autour de chez moi :</p>
+    <ul class="map-list">
+      <li><span class="ico">🏠</span><span><b>Ma maison</b> — très proche de mon école</span></li>
+      <li><span class="ico">🛒</span><span><b>À côté :</b> une petite épicerie</span></li>
+      <li><span class="ico">☕</span><span><b>En face :</b> un café où je fais mes devoirs</span></li>
+      <li><span class="ico">🌿</span><span><b>Derrière :</b> un jardin et un très grand parc</span></li>
+    </ul>
+    <p>Mon école est grande et très différente de celle de Toronto. Les élèves sont gentils et les enseignants m'aident toujours quand je ne comprends pas quelque chose.</p>
+  </div>
+</section>
+
+<!-- 5 · Lieux -->
+<section class="section reveal" id="lieux">
+  <div class="content">
+    <div class="label">Partie 5 · Mes endroits préférés</div>
+    <h2>Les lieux que j'ai visités</h2>
+    <p>Voici quelques endroits que j'ai découverts depuis mon arrivée :</p>
+    <div class="photo-grid">
+      <div class="photo-card">
+        <img alt="Plage de Bali" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=80" onerror="this.parentElement.style.background='linear-gradient(135deg,#d7e8d8,#f7e8d6)';this.remove();"/>
+        <div><h3>Les plages</h3><p>Sable blanc, surf et couchers de soleil incroyables.</p></div>
+      </div>
+      <div class="photo-card">
+        <img alt="Rizières en terrasses de Tegalalang" src="https://images.unsplash.com/photo-1512100356356-de1b84283e18?auto=format&fit=crop&w=800&q=80" onerror="this.parentElement.style.background='linear-gradient(135deg,#d7e8d8,#f7e8d6)';this.remove();"/>
+        <div><h3>Les rizières</h3><p>Les terrasses vertes de Tegalalang sont magnifiques.</p></div>
+      </div>
+      <div class="photo-card">
+        <img alt="Temple au bord de la falaise" src="https://images.unsplash.com/photo-1544644181-1484b3fdfc62?auto=format&fit=crop&w=800&q=80" onerror="this.parentElement.style.background='linear-gradient(135deg,#d7e8d8,#f7e8d6)';this.remove();"/>
+        <div><h3>Les temples</h3><p>Des centaines de temples, comme celui d'Uluwatu.</p></div>
+      </div>
+      <div class="photo-card">
+        <img alt="Marché d'Ubud" src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=800&q=80" onerror="this.parentElement.style.background='linear-gradient(135deg,#d7e8d8,#f7e8d6)';this.remove();"/>
+        <div><h3>Le marché d'Ubud</h3><p>Artisanat, épices et souvenirs à négocier.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · Bilan -->
+<section class="section reveal" id="bilan">
+  <div class="content">
+    <div class="label">Partie 6 · Bilan</div>
+    <h2>Ce que j'ai appris</h2>
+    <p class="lead">Mon échange m'a appris bien plus que des mots de vocabulaire. Voici les quatre leçons les plus importantes :</p>
+    <div class="lessons">
+      <div class="lesson">
+        <div class="num">1</div>
+        <h3>Le français</h3>
+        <p>Parler la langue chaque jour, en classe et avec mes amis, a amélioré ma fluidité et ma confiance.</p>
+      </div>
+      <div class="lesson">
+        <div class="num">2</div>
+        <h3>Une nouvelle culture</h3>
+        <p>Les offrandes, les danses et les cérémonies m'ont montré une façon de vivre très différente de la mienne.</p>
+      </div>
+      <div class="lesson">
+        <div class="num">3</div>
+        <h3>L'indépendance</h3>
+        <p>Vivre loin de ma famille m'a appris à me débrouiller seule, même quand c'était difficile.</p>
+      </div>
+      <div class="lesson">
+        <div class="num">4</div>
+        <h3>L'ouverture d'esprit</h3>
+        <p>Rencontrer des gens d'horizons différents m'a aidée à voir le monde avec de nouveaux yeux.</p>
+      </div>
+    </div>
+    <h3 style="margin-top:2rem">Mots de vocabulaire</h3>
     <div>
-        <h2>Bienvenue à Bali !</h2>
-        <p>Découvrez mon aventure en Indonésie.</p>
+      <span class="word">Bonjour — Om swastiastu</span>
+      <span class="word">Merci — Suksma</span>
+      <span class="word">Le temple — Pura</span>
+      <span class="word">L'offrande — Canang sari</span>
+      <span class="word">Le riz — Nasi</span>
+      <span class="word">La plage — Pantai</span>
+      <span class="word">Le marché — Pasar</span>
+      <span class="word">Le petit restaurant — Warung</span>
     </div>
-</div>
-
-<main class="container">
-
-<section id="maison">
-    <h2 class="section-title">Bienvenue sur mon blog</h2>
-    <div class="intro-card">
-        <p>Bonjour tout le monde ! Bienvenue sur mon blog ! Je m’appelle [ton prénom] et je viens de Toronto, au Canada. Dans ce blog, je vais partager mon expérience pendant mon programme d’échange à Bali, en Indonésie. Je vais parler de mes activités, des endroits que je visite, des personnes que je rencontre et des choses que j’apprends. Je suis très contente de découvrir un nouveau pays et de vivre de nouvelles expériences. Bonne lecture !</p>
-    </div>
+    <details>
+      <summary>Pourquoi Bali est-elle appelée « l'île des dieux » ?</summary>
+      <p>À cause de ses milliers de temples et de l'importance de la religion hindoue dans la vie quotidienne des Balinais.</p>
+    </details>
+    <details>
+      <summary>Quelle est la nourriture traditionnelle que j'ai préférée ?</summary>
+      <p>Le nasi goreng (riz frit) et les fruits frais, surtout le mangoustan et le fruit du dragon !</p>
+    </details>
+    <details>
+      <summary>Qu'est-ce qui me manque le plus du Canada ?</summary>
+      <p>Ma famille et les températures fraîches… mais je garde le contact avec eux chaque semaine.</p>
+    </details>
+  </div>
 </section>
 
-<section id="introduction">
-    <h2 class="section-title">Découvrir la culture balinaise</h2>
-    <div class="culture">
-        <p>Bali est une île d’Indonésie connue pour ses belles plages, ses temples et sa culture unique. La religion hindoue joue un rôle important dans la vie quotidienne. Les habitants célèbrent des traditions, font des offrandes et pratiquent des danses traditionnelles. Bali est aussi connue pour sa musique, son art et sa nourriture traditionnelle. Je trouve cette culture intéressante parce qu’elle est différente de celle du Canada.</p>
-    </div>
-</section>
-
-<section id="experience">
-    <h2 class="section-title">Mon Expérience</h2>
-
-    <article class="place">
-        <img
-        src="https://images.unsplash.com/photo-1604999333679-b86d54738315?auto=format&fit=crop&w=900&q=85"
-        alt="Temple traditionnel à Bali">
-
-        <div>
-            <h3>1. Mon arrivée à Bali</h3>
-            <p>Je suis arrivé à Bali il y a quelques semaines. Au début, j'étais nerveux parce que je ne connaissais personne. Maintenant, je me sens plus à l'aise et j'apprécie mon expérience. J'ai rencontré de nouveaux amis et découvert une nouvelle culture. J'ai même découvert que parler français presque tous les jours m'a beaucoup aidé à m'améliorer. J'ai également beaucoup appris sur les traditions et les coutumes balinaises que la plupart des gens ne connaissent pas à moins d'être dans le pays.</p>
-        </div>
-    </article>
-
-    <article class="place">
-        <img
-        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85"
-        alt="Belle plage tropicale">
-
-        <div>
-            <h3>2. Mon quartier et mon école</h3>
-            <p>Je vis dans un quartier agréable à Bali. Ma maison est très proche de mon école et à côté d'une petite épicerie. En face de chez moi, il y a un café. Et derrière ma maison, il y a un jardin et un très grand parc. Mon école est grande et différente. Les étudiants sont gentils et les enseignants m'aident quand je ne comprends pas quelque chose.</p>
-        </div>
-    </article>
-
-    <article class="place">
-        <img
-        src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=900&q=85"
-        alt="Repas et cuisine traditionnelle">
-
-        <div>
-            <h3>3. Les endroits que j'ai visités</h3>
-            <p>Pendant mon séjour, je suis allé à la plage et j'ai visité un marché local. J'ai également découvert des temples balinais et pris des photos des magnifiques paysages. J'ai trouvé les lieux très intéressants parce qu'ils sont différents des endroits du Canada.</p>
-        </div>
-    </article>
-
-    <article class="place">
-        <img
-        src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=900&q=85"
-        alt="Paysage tropical de Bali">
-
-        <div>
-            <h3>4. Les traditions et la culture</h3>
-            <p>J'ai beaucoup appris sur la culture balinaise. J'ai remarqué que les traditions et la religion sont importantes dans la vie de tous les jours. J'ai vu de beaux temples et de petites offrandes traditionnelles. Je trouve cette culture intéressante parce qu'elle est différente de la culture canadienne.</p>
-        </div>
-    </article>
-
-    <article class="place">
-        <img
-        src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?auto=format&fit=crop&w=900&q=85"
-        alt="Paysage et nature en Indonésie">
-
-        <div>
-            <h3>5. Les mots que j'ai appris</h3>
-            <p>Pendant mon séjour, j'ai appris quelques mots en indonésien. Par exemple, “terima kasih” signifie “merci” et “selamat pagi” signifie “bonjour”. J'essaie d'utiliser ces mots lorsque je parle aux habitants, mais certains d'entre eux m'ont juste jeté un regard bizarre parce que je n'arrêtais pas de tout gâcher. J'apprends également de nouveaux mots indonésiens pendant mon échange.</p>
-        </div>
-    </article>
-
-    <article class="place">
-        <img
-        src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?auto=format&fit=crop&w=900&q=85"
-        alt="Voyage et découverte">
-
-        <div>
-            <h3>6. Ce que cette expérience m'a appris</h3>
-            <p>Cette expérience m'a appris à être plus indépendant et à respecter les différences culturelles. J'ai découvert un nouveau mode de vie et rencontré des gens intéressants. Si j'avais plus de temps, je visiterais d'autres endroits en Indonésie et j'en apprendrais plus sur la culture balinaise. Je n'oublierai jamais cette expérience.</p>
-        </div>
-    </article>
-</section>
-
-<section id="culture">
-    <h2 class="section-title">Ce Que J’ai Appris</h2>
-    <div class="intro-card">
-        <p>Merci d'avoir lu mon blog de voyage à Bali !</p>
-    </div>
-</section>
-
-<section id="contact">
-    <div class="contact">
-        <h2 class="section-title">Contact</h2>
-        <p>Merci de visiter mon blog !</p>
-        <p>Pour me contacter : <a href="mailto:tavares007@tcdsb.ca">tavares007@tcdsb.ca</a></p>
-    </div>
+<!-- 7 · Contact -->
+<section class="section reveal" id="contact">
+  <div class="content">
+    <div class="label">Partie 7 · Contact</div>
+    <h2>Écrivez-moi !</h2>
+    <p>Vous avez une question sur mon échange ou sur Bali ? Envoyez-moi un message — je vous répondrai avec plaisir.</p>
+    <form class="contact-form" id="contactForm" novalidate>
+      <div class="form-field">
+        <label for="nom">Votre nom</label>
+        <input id="nom" name="nom" type="text" placeholder="Ex. Marie Tremblay" required/>
+      </div>
+      <div class="form-field">
+        <label for="courriel">Votre courriel</label>
+        <input id="courriel" name="courriel" type="email" placeholder="vous@exemple.com" required/>
+      </div>
+      <div class="form-field full">
+        <label for="message">Votre message</label>
+        <textarea id="message" name="message" rows="5" placeholder="Bonjour Sarielis…" required></textarea>
+      </div>
+      <div class="form-field full">
+        <button type="submit">Envoyer le message</button>
+        <p class="form-note" id="formNote">✓ Merci ! Votre message a bien été envoyé.</p>
+      </div>
+    </form>
+    <p class="email-line">Ou écrivez-moi directement à <a class="social-links" href="mailto:sarielis.sosa@ecole.ca">sarielis.sosa@ecole.ca</a></p>
+    <p class="small-note">Formulaire de démonstration — pour un vrai envoi, il faudrait le connecter à un service comme Formspree ou EmailJS.</p>
+  </div>
 </section>
 
 </main>
 
 <footer>
-    <p><strong>SSS Bali Blog</strong> — Fabriqué avec amour ❤️ du Canada et de Bali</p>
-    <p>Instagram · TikTok · Newsletter</p>
-    <p>© 2026 SSS Bali Blog. Tous droits réservés.</p>
+  <h2>Merci de votre visite !</h2>
+  <p>Mon Échange à Bali — Journal de Sarielis Sosa Saunders · FSF2DE-02 · Projet scolaire 2026</p>
 </footer>
+
+<button id="toTop" aria-label="Retour en haut" title="Retour en haut">↑</button>
+
+<script>
+// Reveal sections on scroll
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// Active nav link
+const links = [...document.querySelectorAll('nav a')];
+const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const navIO = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+    }
+  });
+}, { rootMargin: '-45% 0px -50% 0px' });
+sections.forEach(s => navIO.observe(s));
+
+// Back to top
+const toTop = document.getElementById('toTop');
+window.addEventListener('scroll', () => {
+  toTop.classList.toggle('show', window.scrollY > 600);
+}, { passive: true });
+toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+// Contact form (demo)
+document.getElementById('contactForm').addEventListener('submit', function (e) {
+  e.preventDefault();
+  if (!this.checkValidity()) { this.reportValidity(); return; }
+  document.getElementById('formNote').style.display = 'block';
+  this.reset();
+});
+</script>
 
 </body>
 </html>
